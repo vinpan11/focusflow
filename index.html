@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta name="description" content="A calm, distraction-free Pomodoro timer.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <title>FocusFlow — Focus with purpose</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="FocusFlow home"><span class="brand-mark">●</span> FocusFlow</a>
+      <button id="installBtn" class="quiet-button" hidden>Install app</button>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">MAKE TIME COUNT</p>
+      <h1>Focus with<br><span>purpose.</span></h1>
+      <p class="subheading">One thing at a time. Give it your attention.</p>
+    </section>
+
+    <section class="timer-card" aria-label="Pomodoro timer">
+      <div class="mode-tabs" role="group" aria-label="Timer mode">
+        <button class="mode active" data-mode="focus">Focus</button>
+        <button class="mode" data-mode="short">Short break</button>
+        <button class="mode" data-mode="long">Long break</button>
+      </div>
+      <div class="timer-wrap">
+        <svg class="progress" viewBox="0 0 260 260" aria-hidden="true">
+          <circle class="track" cx="130" cy="130" r="116"></circle>
+          <circle id="progressRing" class="ring" cx="130" cy="130" r="116"></circle>
+        </svg>
+        <div class="timer-readout">
+          <div id="time" class="time">25:00</div>
+          <div id="timerStatus" class="timer-status">READY TO FOCUS</div>
+        </div>
+      </div>
+      <div class="timer-actions">
+        <button id="startBtn" class="primary-button">Start focus</button>
+        <button id="resetBtn" class="secondary-button" aria-label="Reset timer">↺</button>
+      </div>
+      <p class="cycle-note"><span id="sessionCount">0</span> focus sessions completed today</p>
+    </section>
+
+    <section class="lower-grid">
+      <section class="panel task-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">YOUR PLAN</p><h2>Today's tasks</h2></div>
+          <span id="taskCount" class="count-pill">0</span>
+        </div>
+        <form id="taskForm" class="task-form">
+          <input id="taskInput" type="text" maxlength="100" placeholder="What needs your focus?" autocomplete="off" aria-label="New task">
+          <button type="submit" aria-label="Add task">+</button>
+        </form>
+        <ul id="taskList" class="task-list"></ul>
+        <p id="emptyTasks" class="empty-state">A clear plan makes it easier to begin.</p>
+      </section>
+
+      <section class="panel stats-panel">
+        <p class="eyebrow">YOUR PROGRESS</p>
+        <h2>Small steps add up.</h2>
+        <div class="stat-number" id="focusMinutes">0<span> min</span></div>
+        <p class="stat-label">focused today</p>
+        <div class="week-bars" id="weekBars" aria-label="Focus minutes over the last seven days"></div>
+        <div class="week-labels"><span>6 days ago</span><span>Today</span></div>
+      </section>
+    </section>
+
+    <section class="settings panel">
+      <details>
+        <summary>Timer preferences</summary>
+        <div class="settings-grid">
+          <label>Focus <span><input id="focusSetting" type="number" min="1" max="120" value="25"> min</span></label>
+          <label>Short break <span><input id="shortSetting" type="number" min="1" max="30" value="5"> min</span></label>
+          <label>Long break <span><input id="longSetting" type="number" min="1" max="60" value="15"> min</span></label>
+          <label>Long break after <span><input id="cycleSetting" type="number" min="2" max="8" value="4"> sessions</span></label>
+          <label class="toggle-label"><input id="autoStartSetting" type="checkbox"> Automatically start next session</label>
+          <button id="saveSettings" class="secondary-button save-settings">Save preferences</button>
+        </div>
+      </details>
+    </section>
+
+    <footer>Designed for deliberate work, not endless scrolling.</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
